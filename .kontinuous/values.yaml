@@ -1,6 +1,5 @@
 app:
   containerPort: 8080
-  ~needs: [build-app]
   securityContext:
     fsGroup: 101
     runAsGroup: 101
@@ -14,12 +13,3 @@ app:
       memory: 256Mi
   autoscale:
     enabled: true
-
-jobs:
-  runs:
-    build-app:
-      use: build
-      with:
-        imagePackage: app
-        buildArgs:
-          COMMIT_SHA: "{{ $.Values.global.sha }}"
