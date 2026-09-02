@@ -11,5 +11,8 @@ app:
     limits:
       cpu: 200m
       memory: 256Mi
+  # Static "service suspendu" notice: one replica is enough. The PDB that ships
+  # with autoscale would also block node drains once down to a single replica.
+  replicas: 1
   autoscale:
-    enabled: true
+    enabled: false
